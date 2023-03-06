@@ -1,0 +1,35 @@
+name: Fetch latest map .kml periodically
+
+# Controls when the action will run.
+on:
+  workflow_dispatch:
+  schedule:
+    # Every day at '03:47'
+    # "Random" value to ensure it doesn't collide with peak scheduling hours
+    - cron:  '47 3 * * *'
+
+jobs:
+  fetch_map_and_commit:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@master
+
+    - name: Run fetch script
+      run: bash fetch.sh
+
+    - name: Commit files
+      run: |
+          echo "Checking data on: `date`"
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "New update available"
+            git config --local user.name actions-user
+            git config --local user.email "actions@github.com"
+            git add *.kmz
+            git commit -am "Automatic data update - $(date '+%y%m%d_%H%M')"
+            git push origin master
+          else
+            echo "no changes to commit"
+          fi
+      env:
+        TZ: Europe/Paris
