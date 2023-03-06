@@ -4,8 +4,9 @@ name: Fetch latest map .kml periodically
 on:
   workflow_dispatch:
   schedule:
-    # Every day at midnight
-    - cron:  '0 0 * * *'
+    # Every day at '03:47'
+    # "Random" value to ensure it doesn't collide with peak scheduling hours
+    - cron:  '47 3 * * *'
 
 jobs:
   fetch_map_and_commit:
@@ -25,7 +26,7 @@ jobs:
             git config --local user.name actions-user
             git config --local user.email "actions@github.com"
             git add *.kmz
-            git commit -am "Update data - $(date '+%y%m%d_%H%M')"
+            git commit -am "Automatic data update - $(date '+%y%m%d_%H%M')"
             git push origin master
           else
             echo "no changes to commit"
