@@ -8,6 +8,11 @@ on:
     # "Random" value to ensure it doesn't collide with peak scheduling hours
     - cron:  '47 3 * * *'
 
+# permissions
+permissions:
+  contents: write
+  packages: write
+
 jobs:
   fetch_map_and_commit:
     runs-on: ubuntu-latest
