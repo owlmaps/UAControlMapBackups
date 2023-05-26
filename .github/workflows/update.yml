@@ -15,7 +15,7 @@ permissions:
 
 jobs:
   fetch_map_and_commit:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     steps:
     - uses: actions/checkout@master
