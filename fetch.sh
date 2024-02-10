@@ -10,6 +10,7 @@ rt=0
     while [ $rt -lt $tries ]; do
         if wget -O ${SAVE_TO} ${EXPORT_URL}; then
             echo "Saved to ${SAVE_TO}"
+	    cp ${SAVE_TO} ${FOLDER:-.}/latest.kmz
         return 0
 	  else
         echo -n "We don't give up that easily... Retrying in $retry_secs s..."
