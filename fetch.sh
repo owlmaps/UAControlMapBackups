@@ -1,6 +1,6 @@
 #!/bin/bash
 FOLDER=$1
-EXPORT_URL='https://www.google.com/maps/d/kml?mid=180u1IkUjtjpdJWnIC0AxTKSiqK4G6Pez'
+EXPORT_URL='https://www.google.com/maps/d/kml?mid=1xPxgT8LtUjuspSOGHJc2VzA5O5jWMTE'
 SAVE_TO=${FOLDER:-.}/$(date '+%y%m%d_%H%M').kmz
 tries=90
 retry_secs=30
